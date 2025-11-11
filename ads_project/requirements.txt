@@ -1,0 +1,9 @@
+requests
+beautifulsoup4
+selenium
+pandas
+nltk
+lxml
+Flask
+Flask-Login
+langdetect

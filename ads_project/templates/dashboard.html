@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2 class="mb-3">Dashboard</h2>
+<form method="post" class="row g-3">
+  <div class="col-md-8">
+    <label class="form-label">Movie name</label>
+    <input class="form-control" type="text" name="movie" value="{{ movie_name }}" placeholder="e.g. The Dark Knight or Barbie 2023" required>
+  </div>
+  <div class="col-md-2">
+    <label class="form-label">Max reviews</label>
+    <input class="form-control" type="number" name="max_reviews" value="20" min="1" max="100">
+  </div>
+  <div class="col-md-2 d-flex align-items-end">
+    <button class="btn btn-primary w-100 hover-lift" type="submit">Fetch Reviews</button>
+  </div>
+</form>
+
+{% if summary %}
+<hr>
+<h5>Sentiment Summary</h5>
+<ul>
+  {% for label, count in summary.items() %}
+    <li><strong>{{ label }}</strong>: <span data-countup="{{ count }}">0</span></li>
+  {% endfor %}
+  </ul>
+{% endif %}
+
+{% if results %}
+<hr>
+<h5>Top Reviews</h5>
+<div class="list-group stagger">
+  {% for row in results %}
+    {% set emoji = '😄' if row.label == 'Positive' else ('😐' if row.label == 'Neutral' else '☹️') %}
+    {% set pct = (row.score if row.score >= 0 else -row.score) * 100 %}
+    <div class="list-group-item hover-lift">
+      <div class="d-flex justify-content-between align-items-center">
+        <div><span class="emoji-pulse" aria-hidden="true">{{ emoji }}</span> <strong>{{ row.label }}</strong></div>
+        <span>score={{ '%.4f'|format(row.score) }}</span>
+      </div>
+      <div class="sentiment-bar mt-2">
+        <div class="sentiment-bar-inner {{ 'sb-pos' if row.label == 'Positive' else ('sb-neu' if row.label == 'Neutral' else 'sb-neg') }}" data-width="{{ '%.0f'|format(pct) }}"></div>
+      </div>
+      <div class="mt-2" style="white-space: pre-wrap;">{{ row.review }}</div>
+    </div>
+  {% endfor %}
+</div>
+{% endif %}
+{% endblock %}

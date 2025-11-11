@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2 class="mb-3">Power BI Report</h2>
+{% if embed_url %}
+  <div class="ratio ratio-16x9" style="border:1px solid var(--border-dark); border-radius:8px; overflow:hidden;">
+    <iframe src="{{ embed_url }}" allowfullscreen frameborder="0"></iframe>
+  </div>
+  <p class="mt-3 text-muted">If the report does not load, verify access permissions and that the embed URL is valid.</p>
+{% else %}
+  <div class="alert alert-warning">No Power BI embed URL configured.</div>
+  <p>Set an embed URL then reload this page:</p>
+  <pre class="p-3" style="background:#111216; color:#f2f2f2; border:1px solid var(--border-dark); border-radius:8px;"># PowerShell (current session)
+$env:POWERBI_EMBED_URL = "https://app.powerbi.com/view?r=YOUR_REPORT_ID"
+python server.py</pre>
+  <p class="mt-2">Use a Share/Embed link or a secured Embed for your org (recommended). Make sure the signed-in user has access to the report.</p>
+{% endif %}
+{% endblock %}
