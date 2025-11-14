@@ -67,7 +67,8 @@ To design an interactive, user-friendly web interface.
          +-------------+--------------+
          |   Power BI Visualization   |
          +----------------------------+
-STEPS OF INSTALLATION....
+         
+➡ STEPS OF INSTALLATION....
 
 1️⃣ Clone the Repository
 git clone https://github.com/yourusername/movie-review-analysis.git
