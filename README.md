@@ -67,4 +67,21 @@ To design an interactive, user-friendly web interface.
          +-------------+--------------+
          |   Power BI Visualization   |
          +----------------------------+
+STEPS OF INSTALLATION....
 
+1️⃣ Clone the Repository
+git clone https://github.com/yourusername/movie-review-analysis.git
+cd movie-review-analysis
+2️⃣ Create Virtual Environment
+python -m venv venv
+venv\Scripts\activate     # (Windows)
+source venv/bin/activate  # (Mac/Linux)
+3️⃣ Install Dependencies
+pip install -r requirements.txt
+4️⃣ Run the Flask App
+python server.py
+5️⃣ Open in your browser:
+http://127.0.0.1:5000/
+6️⃣ Login using demo credentials:
+Username: demo
+Password: demo123
